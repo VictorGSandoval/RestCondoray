@@ -8,7 +8,7 @@ La documentación estará conformada por:
 - Diccionario de base de datos en formato pdf,generado desde vertabelo.
 
 ### Integrantes
-- Victo Sandoval Rosales
+- Victor Sandoval Rosales
 - Lucio Huaman Tirado
 - Zecarlos Cuya Vicente
 
