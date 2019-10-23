@@ -1,6 +1,17 @@
 # RestCondoray
 Desarrollo de Sist. RestCondoray
 - El negocio es basado en el Comedor de Condoray
+### Tablas
+
+- PERSONA: Esta tabla contiene toda la información de las Personas.
+- USUARIO: Contiene los datos del Usuario.
+- UBIGEO: Contiene la ubicación del restaurante.
+- VENTA: Contiene los datos referentes a la persona y la fecha de venta.
+- VENTA DETALLE: Contiene el detalle de ventas realizada a las personas.
+- ASIGNACION: Contiene la asignación de menus.
+- MENU: contiene los menus disponibles.
+- MENU DETALLE: contiene la información del menu.
+- PLATO: contien toda la información de los platos.
 
 ### Funcionalidades
 
