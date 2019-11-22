@@ -64,7 +64,6 @@ CREATE TABLE UBIGUEO (
 CREATE TABLE USUARIO (
     IDUSU int NOT NULL COMMENT 'Identificador del usuario',
     IDEPER int NOT NULL COMMENT 'Identificador de la persona',
-    -- DNIPER varchar(70) NULL COMMENT 'Identificador de la persona',
     NOMPER varchar(70) NULL COMMENT 'Muestra los nombre de los usuarios',
     PASPER varchar(20) NULL COMMENT 'Contraseña de login del usuario',
     CONSTRAINT USUARIO_pk PRIMARY KEY (IDUSU)
