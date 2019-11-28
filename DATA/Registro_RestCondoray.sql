@@ -26,53 +26,53 @@ values
 select * from ASIGNACION;
 
 insert into DETALLE_MENU
-(IDDETMEN,IDPLA)
+(IDDETMEN,IDPLA,IDMEN)
 values
-(1,20),
-(2,19),
-(3,18),
-(4,17),
-(5,16),
-(6,15),
-(7,14),
-(8,13),
-(9,12),
-(10,11),
-(11,10),
-(12,9),
-(13,8),
-(14,7),
-(15,6),
-(16,5),
-(17,4),
-(18,3),
-(19,2),
-(20,1);
+(1,20,1),
+(2,19,1),
+(3,18,1),
+(4,17,2),
+(5,16,2),
+(6,15,2),
+(7,14,2),
+(8,13,3),
+(9,12,3),
+(10,11,3),
+(11,10,3),
+(12,9,4),
+(13,8,4),
+(14,7,4),
+(15,6,4),
+(16,5,5),
+(17,4,5),
+(18,3,5),
+(19,2,6),
+(20,1,6);
 select * from DETALLE_MENU;
 
 insert into MENU
-(IDMEN,NOMMEN,IDDETMEN)
+(IDMEN,NOMMEN)
 values
-(20,"SOPA SECA",1),
-(19,"CAU CAU",2),
-(18,"CARAPULCRA",3),
-(17,"LOMO SALTADO",4),
-(16,"AJI DE GALLINA",5),
-(15,"BISTE A LO POBRE",6),
-(14,"POLLO FRITO",7),
-(13,"ARROZ CHAUFA",8),
-(12,"MILANESA",9),
-(11,"ARROZ VERDE",10),
-(10,"Causa Rellena",11),
-(9,"Combinado",12),
-(8,"Sopa Seca c/n CARAPULCRA",13),
-(7,"Chicharon de Pollo",14),
-(6,"AJI DE Pollo",15),
-(5,"Caldo de Gallina",16),
-(4,"POLLO FRITO c/n Ensalada",17),
-(3,"ARROZ CHAUFA c/n Wantan",18),
-(2,"Tallarines Verdes",19),
-(1,"Rocoto Relleno",20);
+(20,"SOPA SECA"),
+(19,"CAU CAU"),
+(18,"CARAPULCRA"),
+(17,"LOMO SALTADO"),
+(16,"AJI DE GALLINA"),
+(15,"BISTE A LO POBRE"),
+(14,"POLLO FRITO"),
+(13,"ARROZ CHAUFA"),
+(12,"MILANESA"),
+(11,"ARROZ VERDE"),
+(10,"Causa Rellena"),
+(9,"Combinado"),
+(8,"Sopa Seca c/n CARAPULCRA"),
+(7,"Chicharon de Pollo"),
+(6,"AJI DE Pollo"),
+(5,"Caldo de Gallina"),
+(4,"POLLO FRITO c/n Ensalada"),
+(3,"ARROZ CHAUFA c/n Wantan"),
+(2,"Tallarines Verdes"),
+(1,"Rocoto Relleno");
 select * from MENU;
 
 insert into PERSONA
@@ -124,7 +124,7 @@ values
 (2,"Tallarines Verdes","Plato hondo","Contiene fideos, y queso rallado",15),
 (1,"Rocoto Relleno","Plato Llano","Contiene rocoto, lomo saltado",20);
 
-insert into UBIGUEO
+insert into UBIGEO
 (IDUBI,REGUBI,PROUBI,DISUBI)
 values
 (1,"lIMA","CAÑETE","IMPERIAL"),
@@ -147,21 +147,21 @@ values
 (18,"lIMA","CAÑETE","IMPERIAL"),
 (19,"lIMA","CAÑETE","IMPERIAL"),
 (20,"lIMA","CAÑETE","IMPERIAL");
-select * from UBIGUEO;
+select * from UBIGEO;
 
 insert into USUARIO
-(IDUSU,IDEPER,NOMPER,PASPER,TIPUSU)
+(IDUSU,NOMPER,PASPER,TIPUSU)
 values
-(1,1,"XIOMARA","XIOMARA1234","C"),
-(2,2,"CARLOS","CARLOS8971","A"),
-(3,3,"JESUS","JESUSU8778","M"),
-(4,4,"MIGUEL","MIGUEL1784","M"),
-(5,5,"VICTOR","VICTOR67614","A"),
-(6,6,"ANGELA","ANGELA1341","C"),
-(7,7,"DIEGO","DIEGO9874","M"),
-(8,8,"JOSE","JOSESITOMASNA","M"),
-(9,9,"CLARA","CLARA8874","C"),
-(10,10,"CLEYSI","CLEYSI89784","C");
+(1,"XIOMARA","XIOMARA1234","C"),
+(2,"CARLOS","CARLOS8971","A"),
+(3,"JESUS","JESUSU8778","M"),
+(4,"MIGUEL","MIGUEL1784","M"),
+(5,"VICTOR","VICTOR67614","A"),
+(6,"ANGELA","ANGELA1341","C"),
+(7,"DIEGO","DIEGO9874","M"),
+(8,"JOSE","JOSESITOMASNA","M"),
+(9,"CLARA","CLARA8874","C"),
+(10,"CLEYSI","CLEYSI89784","C");
 select * from USUARIO;
 
 insert into VENTA
