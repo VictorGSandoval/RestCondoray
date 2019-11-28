@@ -65,7 +65,8 @@ CREATE TABLE USUARIO (
     IDUSU int NOT NULL COMMENT 'Identificador del usuario',
     IDEPER int NOT NULL COMMENT 'Identificador de la persona',
     NOMPER varchar(70) NULL COMMENT 'Muestra los nombre de los usuarios',
-    PASPER varchar(20) NULL COMMENT 'Contraseña de login del usuario',
+    PASPER varchar(20) NULL COMMENT 'Contiene el tipo de usuario del personal encargado',
+	TIPUSU char(1) NOT NULL COMMENT 'Contiene el Tipo de Usuario del personal a cargo.',
     CONSTRAINT USUARIO_pk PRIMARY KEY (IDUSU)
 ) COMMENT 'Contiene los datos del Usuario.';
 

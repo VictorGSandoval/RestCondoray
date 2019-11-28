@@ -1,6 +1,8 @@
-create database RestCondoray
-DEFAULT CHARACTER SET utf8;
-use RestCondoray;
+-- Created by Vertabelo (http://vertabelo.com)
+-- Last modification date: 2019-11-28 02:42:26.006
+
+-- tables
+-- Table: ASIGNACION
 CREATE TABLE ASIGNACION (
     CODASI int NOT NULL COMMENT 'Contiene el código de asignación.',
     FECASI date NULL COMMENT 'La fecha de la asignación.',
@@ -12,6 +14,7 @@ CREATE TABLE ASIGNACION (
 CREATE TABLE DETALLE_MENU (
     IDDETMEN int NOT NULL COMMENT 'Identificador del detalle del menu',
     IDPLA int NOT NULL COMMENT 'Identificador del plato',
+    IDMEN int NOT NULL COMMENT 'Identificador del menu',
     CONSTRAINT DETALLE_MENU_pk PRIMARY KEY (IDDETMEN)
 ) COMMENT 'contiene la informacion del menu';
 
@@ -19,7 +22,6 @@ CREATE TABLE DETALLE_MENU (
 CREATE TABLE MENU (
     IDMEN int NOT NULL COMMENT 'Identificador del menu',
     NOMMEN varchar(20) NULL COMMENT 'Identificador del nombre del menu',
-    IDDETMEN int NOT NULL COMMENT 'Identificador del detalle del menu',
     CONSTRAINT MENU_pk PRIMARY KEY (IDMEN)
 ) COMMENT 'contiene el menu';
 
@@ -44,13 +46,13 @@ CREATE TABLE PLATO (
     CONSTRAINT PLATO_pk PRIMARY KEY (IDPLA)
 ) COMMENT 'contiene la relacion de los platos';
 
--- Table: UBIGUEO
-CREATE TABLE UBIGUEO (
+-- Table: UBIGEO
+CREATE TABLE UBIGEO (
     IDUBI int NOT NULL COMMENT 'Campo de identificador de ubigueo',
     REGUBI varchar(70) NULL COMMENT 'Región donde se encuentra la persona',
     PROUBI varchar(70) NULL COMMENT 'Provincia donde se ubica la persona',
     DISUBI varchar(70) NULL COMMENT 'Distrito donde se encuentra la persona',
-    CONSTRAINT UBIGUEO_pk PRIMARY KEY (IDUBI)
+    CONSTRAINT UBIGEO_pk PRIMARY KEY (IDUBI)
 ) COMMENT 'Contiene la ubicación del restaurante.';
 
 -- Table: USUARIO
@@ -59,6 +61,7 @@ CREATE TABLE USUARIO (
     DNIPER varchar(70) NULL COMMENT 'Identificador de la persona',
     NOMPER varchar(70) NULL COMMENT 'Muestra los nombre de los usuarios',
     PASPER varchar(20) NULL COMMENT 'Contraseña de login del usuario',
+    TIPUSU char(1) NOT NULL COMMENT 'Contiene el Tipo de Usuario del personal a cargo.',
     CONSTRAINT USUARIO_pk PRIMARY KEY (IDUSU)
 ) COMMENT 'Contiene los datos del Usuario.';
 
@@ -84,17 +87,17 @@ CREATE TABLE VENTA_DETALLE (
 ALTER TABLE ASIGNACION ADD CONSTRAINT Asignacion_Menu FOREIGN KEY Asignacion_Menu (IDMEN)
     REFERENCES MENU (IDMEN);
 
+-- Reference: DETALLE_MENU_MENU (table: DETALLE_MENU)
+ALTER TABLE DETALLE_MENU ADD CONSTRAINT DETALLE_MENU_MENU FOREIGN KEY DETALLE_MENU_MENU (IDMEN)
+    REFERENCES MENU (IDMEN);
+
 -- Reference: Det_Menu_Plato (table: DETALLE_MENU)
 ALTER TABLE DETALLE_MENU ADD CONSTRAINT Det_Menu_Plato FOREIGN KEY Det_Menu_Plato (IDPLA)
     REFERENCES PLATO (IDPLA);
 
--- Reference: Menu_Det_Menu (table: MENU)
-ALTER TABLE MENU ADD CONSTRAINT Menu_Det_Menu FOREIGN KEY Menu_Det_Menu (IDDETMEN)
-    REFERENCES DETALLE_MENU (IDDETMEN);
-
 -- Reference: Persona_Ubigueo (table: PERSONA)
 ALTER TABLE PERSONA ADD CONSTRAINT Persona_Ubigueo FOREIGN KEY Persona_Ubigueo (IDUBI)
-    REFERENCES UBIGUEO (IDUBI);
+    REFERENCES UBIGEO (IDUBI);
 
 -- Reference: Persona_Usuario (table: PERSONA)
 ALTER TABLE PERSONA ADD CONSTRAINT Persona_Usuario FOREIGN KEY Persona_Usuario (IDUSU)
@@ -115,3 +118,6 @@ ALTER TABLE VENTA_DETALLE ADD CONSTRAINT Venta_Detalle_Venta FOREIGN KEY Venta_D
 -- Reference: Venta_Persona (table: VENTA)
 ALTER TABLE VENTA ADD CONSTRAINT Venta_Persona FOREIGN KEY Venta_Persona (IDPER)
     REFERENCES PERSONA (IDPER);
+
+-- End of file.
+
