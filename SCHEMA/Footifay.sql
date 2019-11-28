@@ -1,9 +1,8 @@
--- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2019-10-22 14:04:59.364
-
-create database FOOTIFY
-DEFAULT CHARACTER SET utf8;
+create database FOOTIFY;
 use FOOTIFY;
+
+-- Created by Vertabelo (http://vertabelo.com)
+-- Last modification date: 2019-11-28 23:35:21.509
 
 -- tables
 -- Table: ASIGNACION
@@ -18,6 +17,7 @@ CREATE TABLE ASIGNACION (
 CREATE TABLE DETALLE_MENU (
     IDDETMEN int NOT NULL COMMENT 'Identificador del detalle del menu',
     IDPLA int NOT NULL COMMENT 'Identificador del plato',
+    IDMEN int NOT NULL COMMENT 'Identificador del menu',
     CONSTRAINT DETALLE_MENU_pk PRIMARY KEY (IDDETMEN)
 ) COMMENT 'contiene la informacion del menu';
 
@@ -25,7 +25,6 @@ CREATE TABLE DETALLE_MENU (
 CREATE TABLE MENU (
     IDMEN int NOT NULL COMMENT 'Identificador del menu',
     NOMMEN varchar(20) NULL COMMENT 'Identificador del nombre del menu',
-    IDDETMEN int NOT NULL COMMENT 'Identificador del detalle del menu',
     CONSTRAINT MENU_pk PRIMARY KEY (IDMEN)
 ) COMMENT 'contiene el menu';
 
@@ -35,7 +34,7 @@ CREATE TABLE PERSONA (
     NOMPER varchar(70) NULL COMMENT 'Contiene los nombres de la persona',
     APEPER varchar(100) NULL COMMENT 'Contiene los apellidos de la persona',
     SEXPER varchar(20) NULL COMMENT 'Contiene el sexo de la persona',
-    CELPER char(9) NULL COMMENT 'Contiene el numero celular de la persona',  
+    CELPER char(9) NULL,
     IDUBI int NOT NULL COMMENT 'Identificador de ubigeo de persona',
     IDUSU int NOT NULL COMMENT 'Identificador del usuario',
     CONSTRAINT PERSONA_pk PRIMARY KEY (IDPER)
@@ -51,22 +50,21 @@ CREATE TABLE PLATO (
     CONSTRAINT PLATO_pk PRIMARY KEY (IDPLA)
 ) COMMENT 'contiene la relacion de los platos';
 
--- Table: UBIGUEO
-CREATE TABLE UBIGUEO (
+-- Table: UBIGEO
+CREATE TABLE UBIGEO (
     IDUBI int NOT NULL COMMENT 'Campo de identificador de ubigueo',
     REGUBI varchar(70) NULL COMMENT 'Región donde se encuentra la persona',
     PROUBI varchar(70) NULL COMMENT 'Provincia donde se ubica la persona',
     DISUBI varchar(70) NULL COMMENT 'Distrito donde se encuentra la persona',
-    CONSTRAINT UBIGUEO_pk PRIMARY KEY (IDUBI)
+    CONSTRAINT UBIGEO_pk PRIMARY KEY (IDUBI)
 ) COMMENT 'Contiene la ubicación del restaurante.';
 
 -- Table: USUARIO
 CREATE TABLE USUARIO (
     IDUSU int NOT NULL COMMENT 'Identificador del usuario',
-    IDEPER int NOT NULL COMMENT 'Identificador de la persona',
     NOMPER varchar(70) NULL COMMENT 'Muestra los nombre de los usuarios',
-    PASPER varchar(20) NULL COMMENT 'Contiene el tipo de usuario del personal encargado',
-	TIPUSU char(1) NOT NULL COMMENT 'Contiene el Tipo de Usuario del personal a cargo.',
+    PASPER varchar(20) NULL COMMENT 'Contraseña de login del usuario',
+    TIPUSU char(1) NOT NULL COMMENT 'Contiene el Tipo de Usuario del personal a cargo.',
     CONSTRAINT USUARIO_pk PRIMARY KEY (IDUSU)
 ) COMMENT 'Contiene los datos del Usuario.';
 
@@ -92,17 +90,17 @@ CREATE TABLE VENTA_DETALLE (
 ALTER TABLE ASIGNACION ADD CONSTRAINT Asignacion_Menu FOREIGN KEY Asignacion_Menu (IDMEN)
     REFERENCES MENU (IDMEN);
 
+-- Reference: DETALLE_MENU_MENU (table: DETALLE_MENU)
+ALTER TABLE DETALLE_MENU ADD CONSTRAINT DETALLE_MENU_MENU FOREIGN KEY DETALLE_MENU_MENU (IDMEN)
+    REFERENCES MENU (IDMEN);
+
 -- Reference: Det_Menu_Plato (table: DETALLE_MENU)
 ALTER TABLE DETALLE_MENU ADD CONSTRAINT Det_Menu_Plato FOREIGN KEY Det_Menu_Plato (IDPLA)
     REFERENCES PLATO (IDPLA);
 
--- Reference: Menu_Det_Menu (table: MENU)
-ALTER TABLE MENU ADD CONSTRAINT Menu_Det_Menu FOREIGN KEY Menu_Det_Menu (IDDETMEN)
-    REFERENCES DETALLE_MENU (IDDETMEN);
-
 -- Reference: Persona_Ubigueo (table: PERSONA)
 ALTER TABLE PERSONA ADD CONSTRAINT Persona_Ubigueo FOREIGN KEY Persona_Ubigueo (IDUBI)
-    REFERENCES UBIGUEO (IDUBI);
+    REFERENCES UBIGEO (IDUBI);
 
 -- Reference: Persona_Usuario (table: PERSONA)
 ALTER TABLE PERSONA ADD CONSTRAINT Persona_Usuario FOREIGN KEY Persona_Usuario (IDUSU)
@@ -125,4 +123,6 @@ ALTER TABLE VENTA ADD CONSTRAINT Venta_Persona FOREIGN KEY Venta_Persona (IDPER)
     REFERENCES PERSONA (IDPER);
 
 -- End of file.
+
+
 
